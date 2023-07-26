@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css';
 
 function Registration() {
 
+    const navigate = useNavigate();
+
     const [username, setUsername] = useState(null);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
+    const [ confPass, setConfPass ] = useState(null);
 
-    const [ correctPass, setCorrectPass ] = useState(false);
+    const [ correctPass, setCorrectPass ] = useState(true);
     const [ userInfo, setUserInfo ] = useState([]);
 
-    const [ emptyInput, setEmptyInput ] = useState(true);
+    const [ emptyInput, setEmptyInput ] = useState(false);
     const [ exstUsername, setExstUsername ] = useState(false);
     const [ exstEmail, setExstEmail ] = useState(false);
-    const [ exstPassword, setExstPassword ] = useState(false);
+    const [ regPressed, setRegPressed ] = useState(false);
 
     useEffect(() => {
 
@@ -63,22 +66,58 @@ function Registration() {
 
     }
 
+    const reset = () => {
+        setExstEmail(false);
+        setExstUsername(false);
+        setCorrectPass(true);
+        setEmptyInput(false);
+    }
 
-    const register = (e) => { //async kasnije kad budem dodavao redirect na homepage posle registracije
+
+    const register = async (e) => { //async kasnije kad budem dodavao redirect na homepage posle registracije
         e.preventDefault();
 
-        if(!existingEmail() && !existingPassword() && !existingUsername() && correctPass)
-            console.log('REGISTRACIJA USPJESNA');
-        else if(!username || !email || !password)
-            console.log('Popunite sva potrebna polja!');
-        else if(existingUsername())
-            console.log('Username vec postoji.');
-        else if(existingEmail())
-            console.log('Email je vec u upotrebi.');
-        else if(existingPassword())
-            console.log('Password je zauzet.');
-        else if(!correctPass)
-            console.log('Pogresan password.');
+        setRegPressed(true);
+        reset();
+        
+        if(!username || !email || !password)
+            setEmptyInput(true);
+
+        else{
+            if(password === confPass)
+                setCorrectPass(true);
+            else
+                setCorrectPass(false);
+
+            if(existingUsername())
+                setExstUsername(true);
+
+            if(existingEmail())
+                setExstEmail(true);
+
+            if(!existingEmail() && !existingPassword() && !existingUsername() && correctPass){
+                console.log('REGISTRACIJA USPJESNA');
+
+                const res = await fetch('http://localhost:5000/insertUser', {
+                    method: 'POST',
+                    headers: {'Content-type': 'application/json'},
+                    body: JSON.stringify({
+                        'email': email,
+                        'password': password,
+                        'registered_at': new Date(),
+                        'last_login': new Date(),
+                        'intro': null,
+                        'profile': null,
+                        'username': username,
+                        'role': 'regular'
+                    })
+                });
+
+                navigate('/');
+            }
+        }
+
+        
     }
 
 
@@ -97,7 +136,7 @@ function Registration() {
 
                 <div className='form-container'>
 
-                    {<div>Popunite sva potrebna polja!</div>}
+                    {emptyInput && regPressed && <div className='existing'>Popunite sva potrebna polja!</div>}
 
                     <div className='field'>
                         <input type="text" name="username" autocomplete="off"
@@ -107,6 +146,8 @@ function Registration() {
                             <span className='label-text'>Username</span>
                         </label>
                     </div>
+                    
+                    {exstUsername && <div className='existing'>Username je zauzet</div>}
 
                     <div className='field'>
                         <input type="email" name="email" autocomplete="off"
@@ -116,6 +157,8 @@ function Registration() {
                             <span className='label-text'>Email</span>
                         </label>
                     </div>
+                    
+                    {exstEmail && <div className='existing'>Email je zauzet</div>}
 
                     <div className='field'>
                         <input type="password" name="password" autocomplete="off"
@@ -128,12 +171,14 @@ function Registration() {
 
                     <div className='field'>
                         <input type="password" name="conf-password" autocomplete="off"
-                        onChange={(e) => {e.target.value === password ? setCorrectPass(true) : setCorrectPass(false)}}
+                        onChange={(e) => setConfPass(e.target.value)}
                         required />
                         <label for="conf-password" className='label-wrapper'>
                             <span className='label-text'>Confirm password</span>
                         </label>
                     </div>
+
+                    {!correctPass && regPressed && <div className='existing'>Pogresan password</div>}
 
                     <button className='register' onClick={(e) => register(e)}>REGISTRACIJA</button>
 

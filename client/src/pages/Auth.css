@@ -171,3 +171,14 @@
 .form-container .register:hover {
     background-color: #66fcf2a6;
 }
+
+
+.existing {
+    color: #C5C6C7;
+    padding: 15px 25px;
+    font-size: 15px;
+    border: 1px solid rgb(239, 68, 68, 0.3);
+    background-color: rgb(239, 68, 68, 0.15);
+    border-radius: 5px;
+    margin-top: 8px;
+}

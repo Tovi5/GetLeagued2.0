@@ -28,7 +28,7 @@ app.post('/insertUser', async (req, res) => {
 app.get('/getUserInfo', async (req, res) => {
     try {
 
-        const allEmails = await pool.query('SELECT username, email, password FROM "user"');
+        const allEmails = await pool.query('SELECT username, email FROM "user"');
 
         res.json(allEmails.rows);
         
