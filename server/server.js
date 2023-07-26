@@ -28,9 +28,26 @@ app.post('/insertUser', async (req, res) => {
 app.get('/getUserInfo', async (req, res) => {
     try {
 
-        const allEmails = await pool.query('SELECT username, email FROM "user"');
+        const allEmails = await pool.query('SELECT username, email, password FROM "user"');
 
         res.json(allEmails.rows);
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+
+// change password by email
+app.put('/updatePassword/:email', async (req, res) => {
+    try {
+
+        const { email } = req.params;
+        const { password } = req.body;
+
+        await pool.query('UPDATE "user" SET password = $1 WHERE email = $2', [password, email]);
+
+        res.json('password updated');
         
     } catch (error) {
         console.log(error.message);

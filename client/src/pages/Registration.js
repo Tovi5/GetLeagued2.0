@@ -74,13 +74,13 @@ function Registration() {
     }
 
 
-    const register = async (e) => { //async kasnije kad budem dodavao redirect na homepage posle registracije
+    const register = async (e) => {
         e.preventDefault();
 
         setRegPressed(true);
         reset();
         
-        if(!username || !email || !password)
+        if(!username || !email || !password || !confPass)
             setEmptyInput(true);
 
         else{
@@ -96,9 +96,7 @@ function Registration() {
                 setExstEmail(true);
 
             if(!existingEmail() && !existingPassword() && !existingUsername() && correctPass){
-                console.log('REGISTRACIJA USPJESNA');
-
-                const res = await fetch('http://localhost:5000/insertUser', {
+                await fetch('http://localhost:5000/insertUser', {
                     method: 'POST',
                     headers: {'Content-type': 'application/json'},
                     body: JSON.stringify({
@@ -116,8 +114,6 @@ function Registration() {
                 navigate('/');
             }
         }
-
-        
     }
 
 

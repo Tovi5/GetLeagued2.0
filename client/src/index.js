@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <div>
       <p>Home pageeeee</p>
-      <button><Link to='/login'>Prijava</Link></button>
+      <Link to='/login'><button>Prijava</button></Link>
     </div> ,
   },
   {
