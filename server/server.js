@@ -55,4 +55,20 @@ app.put('/updatePassword/:email', async (req, res) => {
 });
 
 
+//get username, password, role
+app.post('/login', async (req, res) => {
+    try {
+
+        const { username, password } = req.body;
+
+        const info = await pool.query('SELECT * FROM "user" WHERE username = $1 AND password = $2', [username, password]);
+
+        res.json(info.rows);
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+});
+
+
 app.listen(5000, () => console.log('Server is listening on port 5000'));
