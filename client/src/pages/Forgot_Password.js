@@ -107,9 +107,11 @@ function Forgot_Password() {
     return (
         <div className='content-pass'>
 
-            <div className='header'>
-                <span>Reset Password</span>
-            </div>
+            <div className='header-container'>
+                <div className='header'>
+                    <span>Reset Password</span>
+                </div>
+            </div>            
 
             <div className='container-pass'>
 
