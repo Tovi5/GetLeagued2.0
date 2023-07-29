@@ -19,6 +19,8 @@ function Registration() {
     const [exstEmail, setExstEmail] = useState(false);
     const [regPressed, setRegPressed] = useState(false);
 
+    const [passType, setPassType] = useState('password');
+
     useEffect(() => {
 
         const getUserInfo = async () => {
@@ -122,6 +124,8 @@ function Registration() {
 
             <div className='content'>
 
+                <div className='separator' />
+
                 <div className='container'>
 
                     <div className='title-container'>
@@ -158,14 +162,27 @@ function Registration() {
 
                         {exstEmail && <div className='existing'>Email je zauzet</div>}
 
-                        <div className='field'>
-                            <input type="password" name="password" autocomplete="off"
-                                onChange={(e) => setPassword(e.target.value)}
-                                required />
-                            <label for="password" className='label-wrapper'>
-                                <span className='label-text'>Password</span>
-                            </label>
+                        <div className='pass-container'>
+
+                            <div className='field'>
+                                <input type={passType} name="password" autocomplete="off"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required />
+                                <label for="password" className='label-wrapper'>
+                                    <span className='label-text'>Password</span>
+                                </label>
+                            </div>
+
+                            <input type='checkbox' onClick={() => {
+                                if(passType === 'password')
+                                    setPassType('text');
+                                else 
+                                    setPassType('password');
+                                }
+                            }/>
                         </div>
+
+                        
 
                         <div className='field'>
                             <input type="password" name="conf-password" autocomplete="off"

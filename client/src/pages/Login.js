@@ -13,6 +13,8 @@ function Login() {
   const [loginPressed, setLoginPressed] = useState(false);
   const [error, setError] = useState(true);
 
+  const [passType, setPassType] = useState('password');
+
 
   const reset = () => {
     setEmptyInput(false);
@@ -53,6 +55,8 @@ function Login() {
 
       <div className='content'>
 
+        <div className='separator'/>
+
         <div className='container'>
 
           <div className='title-container'>
@@ -78,14 +82,28 @@ function Login() {
               </label>
             </div>
 
-            <div className='field'>
-              <input type="password" name="password" autocomplete="off"
-                onChange={(e) => setPassword(e.target.value)}
-                required />
-              <label for="password" className='label-wrapper'>
-                <span className='label-text'>Password</span>
-              </label>
+            <div className='pass-container'>
+
+              <div className='field'>
+                <input type={passType} name="password" autocomplete="off"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required />
+                <label for="password" className='label-wrapper'>
+                  <span className='label-text'>Password</span>
+                </label>
+              </div>
+
+
+              <input type='checkbox' onClick={() => { 
+                if(passType === 'password')
+                  setPassType('text');
+                else
+                  setPassType('password');
+              }} />
+
             </div>
+
+            
 
             <div className='btn-container'>
 

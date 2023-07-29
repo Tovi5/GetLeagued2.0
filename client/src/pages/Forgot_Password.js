@@ -137,6 +137,10 @@ function Forgot_Password() {
                     </label>
                 </div>
 
+                <div className='pass-container'>
+                    
+                </div>
+
                 {exstPassword && !emptyInput && resetPressed && <div className='error'>Ne mozete koristiti prethodni password kao novi!</div>}
 
                 <div className='field-pass'>
