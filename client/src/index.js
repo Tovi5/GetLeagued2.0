@@ -6,12 +6,13 @@ import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
 import Login from './pages/Login';
 import Registration from './pages/Registration'
 import Forgot_Password from './pages/Forgot_Password';
+import HomePage from './pages/HomePage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <div>
-      <p>Home pageeeee</p>
+      <HomePage/>
       <Link to='/login'><button>Prijava</button></Link>
     </div> ,
   },
