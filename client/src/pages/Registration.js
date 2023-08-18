@@ -19,7 +19,6 @@ function Registration() {
     const [exstEmail, setExstEmail] = useState(false);
     const [regPressed, setRegPressed] = useState(false);
 
-    const [passType, setPassType] = useState('password');
 
     useEffect(() => {
 
@@ -162,26 +161,14 @@ function Registration() {
 
                         {exstEmail && <div className='existing'>Email je zauzet</div>}
 
-                        <div className='pass-container'>
-
-                            <div className='field'>
-                                <input type={passType} name="password" autocomplete="off"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required />
-                                <label for="password" className='label-wrapper'>
-                                    <span className='label-text'>Password</span>
-                                </label>
-                            </div>
-
-                            <input type='checkbox' onClick={() => {
-                                if(passType === 'password')
-                                    setPassType('text');
-                                else 
-                                    setPassType('password');
-                                }
-                            }/>
+                        <div className='field'>
+                            <input type="password" name="password" autocomplete="off"
+                                onChange={(e) => setPassword(e.target.value)}
+                                required />
+                            <label for="password" className='label-wrapper'>
+                                <span className='label-text'>Password</span>
+                            </label>
                         </div>
-
                         
 
                         <div className='field'>
