@@ -86,7 +86,7 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    color: #66FCF1;
+    color: #C5C6C7;
     line-height: 52px;
     outline: 0;
     background-color: inherit;
@@ -170,7 +170,7 @@
 }
 
 .btn-container .login-btn:hover {
-    background-color: #66fcf2a6;
+    background-color: #45A29E;
 }
 
 .btn-container a {
