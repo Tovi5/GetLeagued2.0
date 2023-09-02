@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import kayne from "../img/snow_moon_kayn.jpg";
@@ -54,12 +55,18 @@ const BlogContainer = styled.div`
   background-color: #1F2833;
   width: 99.05vw;
   margin: 0;
-  padding: 50px 0 75px 0;
+  padding: 100px 0 75px 0;
 
   & span{
     font-size: 48px;
-    color: #C5C6C7;
+    color: white;
     font-weight: 700;
+  }
+
+  & hr{
+    border: 1px solid #66FCF1;
+    width: 20%;
+    margin-top: 30px;
   }
 `;
 
@@ -69,7 +76,6 @@ const BlogPostPlaceholder=styled.div`
   display:flex;
   flex-wrap: wrap;
   width:75%;
-  border:2px solid #1f2833;
   margin-top:50px;
   padding:15px;
   column-gap: 2.3%;
@@ -96,7 +102,7 @@ const BlogSummary = styled.div`
   overflow: auto;
 `;
 
-const ViewMore = styled.button`
+const ViewAll = styled.button`
   background-color: #66FCF1;
   margin-top: 50px;
   font-size: 16px;
@@ -116,7 +122,7 @@ function HomePage() {
 
 
   const [newsList, setNewsList] = useState([]);
-  const [loadNews, setLoadNews] = useState(3);
+  const loadNews = 3;
 
   //const [authenticated, setAuthenticated] = useState(null);
 
@@ -142,14 +148,6 @@ function HomePage() {
 
   }, []);
 
-
-  const loadMore = () => {
-    if(loadNews+3 <= newsList.length)
-      setLoadNews(loadNews+3);
-    else
-      setLoadNews(newsList.length);
-  }
-
   return (
     <Container>
       <Content>
@@ -161,6 +159,7 @@ function HomePage() {
       </Content>
       <BlogContainer>
         <span>Najnovije vijesti</span>
+        <hr />
         <BlogPostPlaceholder>
 
           {newsList.slice(0, loadNews).map((news, index) => (
@@ -172,7 +171,7 @@ function HomePage() {
 
         </BlogPostPlaceholder>
 
-        <ViewMore onClick={() => loadMore()}>Pogledaj jos</ViewMore>
+        <Link to="/news"><ViewAll>Sve vijesti</ViewAll></Link>
 
       </BlogContainer>  
     </Container>

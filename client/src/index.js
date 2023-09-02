@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Registration from './pages/Registration'
 import Forgot_Password from './pages/Forgot_Password';
 import HomePage from './pages/HomePage';
+import NewsPage from './pages/NewsPage';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/password/reset",
     element: <Forgot_Password />,
+  },
+  {
+    path: "/news",
+    element: <NewsPage />,
   }
 ]);
 
