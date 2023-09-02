@@ -71,4 +71,18 @@ app.post('/login', async (req, res) => {
 });
 
 
+// get all news (videoURL je null)
+app.get('/getAllNews', async (req, res) => {
+    try {
+
+        const news = await pool.query('SELECT * FROM post WHERE video_url is null');
+
+        res.json(news.rows);
+        
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
+
 app.listen(5000, () => console.log('Server is listening on port 5000'));

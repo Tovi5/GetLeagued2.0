@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css';
+import Navbar from '../components/Navbar';
 
 function Registration() {
 
@@ -123,7 +124,7 @@ function Registration() {
 
             <div className='content'>
 
-                <div className='separator' />
+                <Navbar />
 
                 <div className='container'>
 

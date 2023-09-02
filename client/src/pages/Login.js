@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css';
+import Navbar from '../components/Navbar';
 
 function Login() {
 
@@ -41,7 +42,14 @@ function Login() {
 
       const data = await res.json();
 
-      if (data.length !== 0) navigate('/');
+      if (data.length !== 0) {
+        const role = data[0].role;
+
+        localStorage.setItem('authenticated', true);
+        localStorage.setItem('username', username);
+        localStorage.setItem('role', role);
+        navigate('/'); // potrebno update-ovanje last_login
+      }
       else setError(false);
 
     }
@@ -53,7 +61,7 @@ function Login() {
 
       <div className='content'>
 
-        <div className='separator'/>
+        <Navbar />
 
         <div className='container'>
 

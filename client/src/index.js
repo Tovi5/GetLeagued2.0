@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/Login';
 import Registration from './pages/Registration'
 import Forgot_Password from './pages/Forgot_Password';
@@ -11,10 +11,7 @@ import HomePage from './pages/HomePage';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>
-      <HomePage/>
-      <Link to='/login'><button>Prijava</button></Link>
-    </div> ,
+    element: <HomePage />,
   },
   {
     path: "/login",

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Forgot_Password.css';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 function Forgot_Password() {
 
@@ -109,6 +110,7 @@ function Forgot_Password() {
 
             <div className='header-container'>
                 <div className='header'>
+                    <Navbar />
                     <span>Reset Password</span>
                 </div>
             </div>            
