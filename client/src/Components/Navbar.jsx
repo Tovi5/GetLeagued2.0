@@ -68,14 +68,15 @@ const Profile = styled.button`
 const Options = styled.div`
     position: absolute;
     top: 110px;
-    width: 150px;
+    right: 70px;
+    width: 175px;
     color: white;
+    font-weight: 600;
     border: 1px solid rgb(197, 198, 199, 0.3);
     border-radius: 10px;
     padding: 10px 0;
     display: flex;
     flex-direction: column;
-    right: 75px;
     background-color: rgb(11, 12, 16);
 `;
 
