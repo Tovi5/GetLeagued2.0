@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import { Link } from 'react-router-dom'
+import {AiOutlineDown} from 'react-icons/ai';
 
 
 const Container = styled.div`
@@ -65,6 +66,9 @@ const Profile = styled.button`
     margin-top: 30px;
     cursor: pointer;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
 `;
 
 function Navbar() {
@@ -90,7 +94,7 @@ function Navbar() {
             <Wrapper>
                 <Link to="/"><Houm>Home</Houm></Link>
                 {!authenticated && <Link to="/login"><Button>Prijava</Button></Link>}
-                {authenticated && <Profile onClick={() => signOut()}>{username}</Profile>}
+                {authenticated && <Profile onClick={() => signOut()}>{username} <AiOutlineDown /></Profile>}
             </Wrapper>
         </Container>
     )

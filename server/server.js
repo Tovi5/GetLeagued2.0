@@ -72,10 +72,10 @@ app.post('/login', async (req, res) => {
 
 
 // get all news (videoURL je null)
-app.get('/getAllNews', async (req, res) => {
+app.get('/getAllPosts', async (req, res) => {
     try {
 
-        const news = await pool.query('SELECT * FROM post WHERE video_url is null');
+        const news = await pool.query('SELECT * FROM post');
 
         res.json(news.rows);
         

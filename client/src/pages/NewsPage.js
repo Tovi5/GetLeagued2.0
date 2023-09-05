@@ -1,33 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar';
 import './NewsPage.css';
 
 function NewsPage() {
 
-    const [newsList, setNewsList] = useState([]);
+    const newsList = JSON.parse(localStorage.getItem('newsList'));
     const [loadNews, setLoadNews] = useState(3);
-
-
-    useEffect(() => {
-
-        const getNews = async () => {
-            try {
-
-                let res = await fetch('http://localhost:5000/getAllNews', {
-                    method: 'GET'
-                });
-
-                const data = await res.json();
-                if (data.length > 0) setNewsList(data)
-
-            } catch (error) {
-                console.error(error.message);
-            }
-        }
-
-        getNews();
-
-    }, []);
 
 
     const loadMore = () => {
