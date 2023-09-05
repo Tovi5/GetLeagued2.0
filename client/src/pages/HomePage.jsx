@@ -168,7 +168,8 @@ function HomePage() {
   const loadNews = 3;
   const [input, setInput] = useState('');
 
-  //const [authenticated, setAuthenticated] = useState(null);
+  const [username, setUsername] = useState('');
+  const [role, setRole] = useState('');
 
 
   useEffect(() => {
@@ -190,10 +191,34 @@ function HomePage() {
 
     getPosts();
 
+    if(localStorage.getItem('username'))
+      setUsername(localStorage.getItem('username'));
+
+    if(localStorage.getItem('role'))
+      setRole(localStorage.getItem('role'));
+
     localStorage.removeItem('newsList');
     localStorage.removeItem('filteredPostList');
 
   }, []);
+
+  useEffect(() => {
+
+    if(username)
+      localStorage.setItem('username', username);
+    else
+      localStorage.removeItem('username');
+
+  }, [username]);
+
+  useEffect(() => {
+
+    if(role)
+      localStorage.setItem('role', role);
+    else
+      localStorage.removeItem('role');
+
+  }, [role]);
 
 
   const onSearch = (input) => {
@@ -206,9 +231,10 @@ function HomePage() {
   return (
     <Container>
       <Content>
-        <Navbar>Navbar</Navbar>
+        <Navbar username = {username} setUsername = {setUsername} setRole = {setRole} />
         <Wrapper>
           <Naslov>Spremni da postanete bolji?</Naslov>
+          {username && <span style={{color: 'white'}}>{role} {username}</span>}
           <Pretraga>
             <InputField type="text" placeholder="Pretraga" value={input} onChange={e => setInput(e.target.value)}/>
             <FaSearch style={{marginLeft: '10px', marginRight: '10px', height: '1.5rem', 

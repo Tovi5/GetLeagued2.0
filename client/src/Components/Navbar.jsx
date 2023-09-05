@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
 import { Link } from 'react-router-dom'
 import {AiOutlineDown} from 'react-icons/ai';
+import { AiOutlineUp } from 'react-icons/ai';
 
 
 const Container = styled.div`
@@ -9,11 +10,8 @@ const Container = styled.div`
     height:100px;
     width: 99vw;
     padding: 10px 0 50px 0;
-    background-color:transparent;
-    
-    
+    background-color:transparent;   
 `;//navbar ce imati button za prijavu i imace home page slicicu za vracanje na home page
-
 
 const Wrapper = styled.div`
     display:flex;
@@ -23,9 +21,7 @@ const Wrapper = styled.div`
     position:relative;
 `;
 
-
-const Button = styled.button`
-    
+const Button = styled.button`    
     background-color:transparent;
     border: 2px solid #C5C6C7;
     border-radius: 10px;
@@ -43,7 +39,6 @@ const Button = styled.button`
         color: rgb(102, 252, 241);
         border: 2px solid rgb(102, 252, 241);
     }
-
 `;
 
 const Houm = styled.div`
@@ -52,8 +47,7 @@ const Houm = styled.div`
     font-size: 20px;
     font-weight: 700;
     color:white;
-    margin-left:50px;
-    
+    margin-left:50px;    
 `;
 
 const Profile = styled.button`
@@ -71,32 +65,59 @@ const Profile = styled.button`
     column-gap: 15px;
 `;
 
-function Navbar() {
+const Options = styled.div`
+    position: absolute;
+    top: 110px;
+    width: 150px;
+    color: white;
+    border: 1px solid rgb(197, 198, 199, 0.3);
+    border-radius: 10px;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    right: 75px;
+    background-color: rgb(11, 12, 16);
+`;
 
-    const [authenticated, setAuthenticated] = useState(null);
-    const username = localStorage.getItem('username');
+const Option = styled.div`
+    padding: 10px 30px;
+    font-size: 16px;
+    transition: background-color 0.15s ease;
+    cursor: pointer;
 
-    useEffect(() => {
-        const loggedIn = localStorage.getItem('authenticated');
-        if (loggedIn)
-            setAuthenticated(loggedIn);
-    }, []);
+    &:hover{
+        background-color: #45A29E;
+    }
+`;
+
+function Navbar({username, setUsername, setRole}) {
+
+    const [profileClicked, setProfileClicked] = useState(false);
 
     const signOut = () => {
-        localStorage.removeItem('authenticated');
-        localStorage.removeItem('username');
-        localStorage.removeItem('role');
-        setAuthenticated(false);
+        setUsername('');
+        setRole('');
+        setProfileClicked(false);
     }
 
     return (
-        <Container>
+        <>
+            <Container>
             <Wrapper>
                 <Link to="/"><Houm>Home</Houm></Link>
-                {!authenticated && <Link to="/login"><Button>Prijava</Button></Link>}
-                {authenticated && <Profile onClick={() => signOut()}>{username} <AiOutlineDown /></Profile>}
+                {!username && <Link to="/login"><Button>Prijava</Button></Link>}
+                {username && <Profile onClick={() => setProfileClicked(!profileClicked)}>{username} 
+                {!profileClicked && <AiOutlineDown />}
+                {profileClicked && <AiOutlineUp/>}
+                </Profile>}
             </Wrapper>
-        </Container>
+            </Container>
+            {profileClicked && 
+            <Options>
+                <Option>Profil</Option>
+                <Option onClick={() => signOut()}>Odjava</Option>
+            </Options>}
+        </>
     )
 }
 
