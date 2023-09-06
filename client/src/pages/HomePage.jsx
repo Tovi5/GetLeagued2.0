@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import kayne from "../img/snow_moon_kayn.jpg";
-import {FaSearch} from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 
 const Container = styled.div`
   background-image: url(${kayne});
@@ -114,7 +114,7 @@ const BlogContainer = styled.div`
   }
 `;
 
-const BlogPostPlaceholder=styled.div`
+const BlogPostPlaceholder = styled.div`
   background-color: transparent;
   color:white;
   display:flex;
@@ -126,7 +126,7 @@ const BlogPostPlaceholder=styled.div`
   row-gap: 10px;
 `;
 
-const Blog=styled.div`
+const Blog = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #13151C;
@@ -183,7 +183,7 @@ function HomePage() {
 
         const data = await res.json();
         if (data.length > 0) setPostList(data.sort((a, b) => new Date(b.published_date) - new Date(a.published_date)))
-        
+
       } catch (error) {
         console.error(error.message);
       }
@@ -191,10 +191,10 @@ function HomePage() {
 
     getPosts();
 
-    if(localStorage.getItem('username'))
+    if (localStorage.getItem('username'))
       setUsername(localStorage.getItem('username'));
 
-    if(localStorage.getItem('role'))
+    if (localStorage.getItem('role'))
       setRole(localStorage.getItem('role'));
 
     localStorage.removeItem('newsList');
@@ -204,7 +204,7 @@ function HomePage() {
 
   useEffect(() => {
 
-    if(username)
+    if (username)
       localStorage.setItem('username', username);
     else
       localStorage.removeItem('username');
@@ -213,7 +213,7 @@ function HomePage() {
 
   useEffect(() => {
 
-    if(role)
+    if (role)
       localStorage.setItem('role', role);
     else
       localStorage.removeItem('role');
@@ -231,25 +231,26 @@ function HomePage() {
   return (
     <Container>
       <Content>
-        <Navbar username = {username} setUsername = {setUsername} setRole = {setRole} />
+        <Navbar username={username} setUsername={setUsername} setRole={setRole} />
         <Wrapper>
           <Naslov>Spremni da postanete bolji?</Naslov>
-          {username && <span style={{color: 'white'}}>{role} {username}</span>}
           <Pretraga>
-            <InputField type="text" placeholder="Pretraga" value={input} onChange={e => setInput(e.target.value)}/>
-            <FaSearch style={{marginLeft: '10px', marginRight: '10px', height: '1.5rem', 
-            width: '1.5rem', color: '#C5C6C7', cursor: 'pointer'}} 
-            onClick={() => onSearch(input)} />
+            <InputField type="text" placeholder="Pretraga" value={input} onChange={e => setInput(e.target.value)} />
+            <FaSearch style={{
+              marginLeft: '10px', marginRight: '10px', height: '1.5rem',
+              width: '1.5rem', color: '#C5C6C7', cursor: 'pointer'
+            }}
+              onClick={() => onSearch(input)} />
           </Pretraga>
           {input && <ResultList>
             {postList.filter(post => {
               return !post.video_url && input && post.title.toLowerCase().includes(input.toLowerCase());
             }).slice(0, 3)
-            .map((news, index) => (
-              <SearchResult onClick={() => setInput(news.title)} key={index}>
-                <FaSearch/> {news.title}
-              </SearchResult>
-            ))}
+              .map((news, index) => (
+                <SearchResult onClick={() => setInput(news.title)} key={index}>
+                  <FaSearch /> {news.title}
+                </SearchResult>
+              ))}
           </ResultList>}
         </Wrapper>
       </Content>
@@ -267,10 +268,10 @@ function HomePage() {
 
         </BlogPostPlaceholder>
 
-        <Link onClick={() => localStorage.setItem('newsList', JSON.stringify(postList.filter(post => !post.video_url)))} 
-        to="/news" target="_parent"><ViewAll>Sve vijesti</ViewAll></Link>
+        <Link onClick={() => localStorage.setItem('newsList', JSON.stringify(postList.filter(post => !post.video_url)))}
+          to="/news" target="_parent"><ViewAll>Sve vijesti</ViewAll></Link>
 
-      </BlogContainer>  
+      </BlogContainer>
     </Container>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
 import { Link } from 'react-router-dom'
-import {AiOutlineDown} from 'react-icons/ai';
+import { AiOutlineDown } from 'react-icons/ai';
 import { AiOutlineUp } from 'react-icons/ai';
 
 
@@ -91,7 +91,7 @@ const Option = styled.div`
     }
 `;
 
-function Navbar({username, setUsername, setRole}) {
+function Navbar({ username, setUsername, setRole }) {
 
     const [profileClicked, setProfileClicked] = useState(false);
 
@@ -104,22 +104,23 @@ function Navbar({username, setUsername, setRole}) {
     return (
         <>
             <Container>
-            <Wrapper>
-                <Link to="/"><Houm>Home</Houm></Link>
-                {!username && <Link to="/login"><Button>Prijava</Button></Link>}
-                {username && <Profile onClick={() => setProfileClicked(!profileClicked)}>{username} 
-                {!profileClicked && <AiOutlineDown />}
-                {profileClicked && <AiOutlineUp/>}
-                </Profile>}
-            </Wrapper>
+                <Wrapper>
+                    <Link to="/"><Houm>Home</Houm></Link>
+                    {username && <Profile onClick={() => setProfileClicked(!profileClicked)}>{username}
+                        {!profileClicked && <AiOutlineDown />}
+                        {profileClicked && <AiOutlineUp />}
+                    </Profile>}
+                    {!username && <Link to="/login"><Button>Prijava</Button></Link>}
+                </Wrapper>
             </Container>
-            {profileClicked && 
-            <Options>
-                <Option>Profil</Option>
-                <Option onClick={() => signOut()}>Odjava</Option>
-            </Options>}
+            
+            {profileClicked &&
+                <Options>
+                    <Link to='/profile' style={{ textDecoration: 'none', color: 'white' }}><Option>Profil</Option></Link>
+                    <Option onClick={() => signOut()}>Odjava</Option>
+                </Options>}
         </>
     )
 }
 
-export default Navbar
+export default Navbar;
