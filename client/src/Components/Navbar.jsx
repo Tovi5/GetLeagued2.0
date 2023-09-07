@@ -91,7 +91,7 @@ const Option = styled.div`
     }
 `;
 
-function Navbar({ username, setUsername, setRole }) {
+function Navbar({ username, setUsername, setRole, setOdjavljen }) {
 
     const [profileClicked, setProfileClicked] = useState(false);
 
@@ -99,6 +99,7 @@ function Navbar({ username, setUsername, setRole }) {
         setUsername('');
         setRole('');
         setProfileClicked(false);
+        setOdjavljen(true);
     }
 
     return (

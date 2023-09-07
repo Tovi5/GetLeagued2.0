@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar';
 import './NewsPage.css';
+import { useNavigate } from 'react-router-dom';
 
 function NewsPage() {
 
@@ -9,6 +10,10 @@ function NewsPage() {
 
     const [username, setUsername] = useState('');
     const [role, setRole] = useState('');
+
+    const [odjavljen, setOdjavljen] = useState(false);
+
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -19,6 +24,9 @@ function NewsPage() {
         if (localStorage.getItem('role'))
             setRole(localStorage.getItem('role'));
 
+        if(JSON.parse(localStorage.getItem('odjavljen')))
+            setOdjavljen(JSON.parse(localStorage.getItem('odjavljen')));
+
     }, []);
 
     useEffect(() => {
@@ -28,16 +36,19 @@ function NewsPage() {
         else
             localStorage.removeItem('username');
 
-    }, [username]);
-
-    useEffect(() => {
-
         if (role)
             localStorage.setItem('role', role);
         else
             localStorage.removeItem('role');
 
-    }, [role]);
+        if(!odjavljen)
+            localStorage.setItem('odjavljen', JSON.stringify(odjavljen));
+        else{
+            localStorage.removeItem('odjavljen');
+            navigate('/');
+        }
+
+    }, [username]);
 
 
     const loadMore = () => {
@@ -52,7 +63,7 @@ function NewsPage() {
 
             <div className='background'>
 
-                <Navbar username={username} setUsername={setUsername} setRole={setRole} />
+                <Navbar username={username} setUsername={setUsername} setRole={setRole} setOdjavljen={setOdjavljen} />
 
                 <div className='news-title-container'>
 

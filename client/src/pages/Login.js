@@ -45,9 +45,12 @@ function Login() {
       if (data.length !== 0) {
         const role = data[0].role;
 
-        localStorage.setItem('authenticated', true);
+        localStorage.setItem('id', data[0].ID);
+        localStorage.setItem('email', data[0].email);
+        localStorage.setItem('password', password);
         localStorage.setItem('username', username);
         localStorage.setItem('role', role);
+        localStorage.setItem('odjavljen', JSON.stringify(false));
         navigate('/'); // potrebno update-ovanje last_login
       }
       else setError(false);

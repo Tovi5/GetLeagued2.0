@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import kayne from "../img/snow_moon_kayn.jpg";
@@ -170,6 +170,10 @@ function HomePage() {
 
   const [username, setUsername] = useState('');
   const [role, setRole] = useState('');
+  
+  const [odjavljen, setOdjavljen] = useState(false);
+  
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -196,6 +200,9 @@ function HomePage() {
 
     if (localStorage.getItem('role'))
       setRole(localStorage.getItem('role'));
+    
+    if(JSON.parse(localStorage.getItem('odjavljen')))
+      setOdjavljen(JSON.parse(localStorage.getItem('odjavljen')));
 
     localStorage.removeItem('newsList');
     localStorage.removeItem('filteredPostList');
@@ -209,16 +216,19 @@ function HomePage() {
     else
       localStorage.removeItem('username');
 
-  }, [username]);
-
-  useEffect(() => {
-
     if (role)
       localStorage.setItem('role', role);
     else
       localStorage.removeItem('role');
 
-  }, [role]);
+    if(!odjavljen)
+        localStorage.setItem('odjavljen', JSON.stringify(odjavljen));
+    else{
+        localStorage.removeItem('odjavljen');
+        navigate('/');
+    }
+
+  }, [username]);
 
 
   const onSearch = (input) => {
@@ -231,7 +241,7 @@ function HomePage() {
   return (
     <Container>
       <Content>
-        <Navbar username={username} setUsername={setUsername} setRole={setRole} />
+        <Navbar username={username} setUsername={setUsername} setRole={setRole} setOdjavljen={setOdjavljen} />
         <Wrapper>
           <Naslov>Spremni da postanete bolji?</Naslov>
           <Pretraga>
