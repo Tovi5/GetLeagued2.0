@@ -28,7 +28,7 @@ app.post('/insertUser', async (req, res) => {
 app.get('/getUserInfo', async (req, res) => {
     try {
 
-        const allEmails = await pool.query('SELECT username, email, password FROM "user"');
+        const allEmails = await pool.query('SELECT * FROM "user"');
 
         res.json(allEmails.rows);
         
@@ -71,7 +71,7 @@ app.post('/login', async (req, res) => {
 });
 
 
-// get all news (videoURL je null)
+// get all posts
 app.get('/getAllPosts', async (req, res) => {
     try {
 
@@ -82,7 +82,27 @@ app.get('/getAllPosts', async (req, res) => {
     } catch (error) {
         console.error(error.message);
     }
-})
+});
+
+
+// save after changes by id
+app.put('/updateUser/:id', async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+        const { username, email, password } = req.body;
+
+        const updated = await pool.query('UPDATE "user" SET username = $1, email = $2, password = $3 '+
+                         'WHERE "ID" = $4', [username, email, password, id]);
+
+        res.json(updated.rowCount);
+        
+    } catch (error) {
+        console.error(error.message);
+    }
+
+});
 
 
 app.listen(5000, () => console.log('Server is listening on port 5000'));

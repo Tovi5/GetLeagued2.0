@@ -1,11 +1,54 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar';
 import './NewsPage.css';
+import { useNavigate } from 'react-router-dom';
 
 function NewsPage() {
 
     const newsList = JSON.parse(localStorage.getItem('newsList'));
     const [loadNews, setLoadNews] = useState(3);
+
+    const [username, setUsername] = useState('');
+    const [role, setRole] = useState('');
+
+    const [odjavljen, setOdjavljen] = useState(false);
+
+    const navigate = useNavigate();
+
+
+    useEffect(() => {
+        
+        if (localStorage.getItem('username'))
+            setUsername(localStorage.getItem('username'));
+
+        if (localStorage.getItem('role'))
+            setRole(localStorage.getItem('role'));
+
+        if(JSON.parse(localStorage.getItem('odjavljen')))
+            setOdjavljen(JSON.parse(localStorage.getItem('odjavljen')));
+
+    }, []);
+
+    useEffect(() => {
+
+        if (username)
+            localStorage.setItem('username', username);
+        else
+            localStorage.removeItem('username');
+
+        if (role)
+            localStorage.setItem('role', role);
+        else
+            localStorage.removeItem('role');
+
+        if(!odjavljen)
+            localStorage.setItem('odjavljen', JSON.stringify(odjavljen));
+        else{
+            localStorage.removeItem('odjavljen');
+            navigate('/');
+        }
+
+    }, [username]);
 
 
     const loadMore = () => {
@@ -20,7 +63,7 @@ function NewsPage() {
 
             <div className='background'>
 
-                <Navbar />
+                <Navbar username={username} setUsername={setUsername} setRole={setRole} setOdjavljen={setOdjavljen} />
 
                 <div className='news-title-container'>
 
