@@ -70,6 +70,7 @@ function NewsPage() {
     }
 
     const handleClick = (post) => {
+        localStorage.setItem('post_id', post.ID);
         localStorage.setItem('url', post.video_url);
         localStorage.setItem('post-title', post.title);
     }
@@ -84,10 +85,10 @@ function NewsPage() {
                 <div className='news-title-container'>
 
                     {postType === 'news' && <div className='title-news'>Vijesti</div>}
-                    {postType === 'video' && <div className='title-news'>Videi</div>}
+                    {postType === 'video' && <div className='title-news'>Video sadrzaj</div>}
 
                     {postType === 'news' && <div className='subtitle'>Informisite se</div>}
-                    {postType === 'video' && <div className='subtitle'>Ucite</div>}
+                    {postType === 'video' && <div className='subtitle'>Ucite od najboljih</div>}
 
                 </div>
 

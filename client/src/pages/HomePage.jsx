@@ -239,18 +239,19 @@ function HomePage() {
     console.log(postList.filter(post => post.title.toLowerCase().includes(input.toLowerCase())));
   }
   
-  const makeSlug = (title) => {
+  const makeSlug = (post) => {
     let slug = '';
-    let words = title.toLowerCase().split(' ');
+    let words = post.title.toLowerCase().split(' ');
     for(let i = 0; i < words.length; i++){
       slug += '-';
       slug += words[i];
     }
 
-    return slug;
+    return slug + '?v=' + post.ID.toString();
   }
 
   const handleClick = (post) => {
+      localStorage.setItem('post_id', post.ID);
       localStorage.setItem('url', post.video_url);
       localStorage.setItem('post-title', post.title);
   }
@@ -305,7 +306,7 @@ function HomePage() {
         <hr />
         <BlogPostPlaceholder>
             {postList.filter(post => post.video_url).slice(0, 3).map((video, index) => {
-              return <Link to={`/post/${video.slug}`} onClick={() => handleClick(video)} 
+              return <Link to={`/post/${video.slug}`} onClick={() => handleClick(video)} target="_parent"
                       className="link">
                 <Blog key={index} style={{backgroundColor: '#1F2833', width: '100%'}}>
                     <BlogTitle>{video.title}</BlogTitle>
