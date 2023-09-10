@@ -134,6 +134,7 @@ const Blog = styled.div`
   height: 150px;
   border-radius: 10px;
   padding: 10px;
+  margin: 0;
   color: #C5C6C7;
 `;
 
@@ -165,7 +166,6 @@ function HomePage() {
 
 
   const [postList, setPostList] = useState([]);
-  const loadNews = 3;
   const [input, setInput] = useState('');
 
   const [username, setUsername] = useState('');
@@ -206,6 +206,7 @@ function HomePage() {
 
     localStorage.removeItem('newsList');
     localStorage.removeItem('filteredPostList');
+    localStorage.removeItem('videosList');
 
   }, []);
 
@@ -236,6 +237,22 @@ function HomePage() {
 
     localStorage.setItem('filteredPostList', JSON.stringify(postList.filter(post => post.title.toLowerCase().includes(input.toLowerCase()))));
     console.log(postList.filter(post => post.title.toLowerCase().includes(input.toLowerCase())));
+  }
+  
+  const makeSlug = (title) => {
+    let slug = '';
+    let words = title.toLowerCase().split(' ');
+    for(let i = 0; i < words.length; i++){
+      slug += '-';
+      slug += words[i];
+    }
+
+    return slug;
+  }
+
+  const handleClick = (post) => {
+      localStorage.setItem('url', post.video_url);
+      localStorage.setItem('post-title', post.title);
   }
 
   return (
@@ -269,7 +286,7 @@ function HomePage() {
         <hr />
         <BlogPostPlaceholder>
 
-          {postList.filter(post => !post.video_url).slice(0, loadNews).map((news, index) => (
+          {postList.filter(post => !post.video_url).slice(0, 3).map((news, index) => (
             <Blog key={index}>
               <BlogTitle>{news.title}</BlogTitle>
               <BlogSummary>{news.summary}</BlogSummary>
@@ -281,6 +298,25 @@ function HomePage() {
         <Link onClick={() => localStorage.setItem('newsList', JSON.stringify(postList.filter(post => !post.video_url)))}
           to="/news" target="_parent"><ViewAll>Sve vijesti</ViewAll></Link>
 
+      </BlogContainer>
+
+      <BlogContainer style={{backgroundColor: '#13151C'}}>
+        <span onClick={() => console.log(postList.filter(post => post.video_url))}>Najnoviji videi</span>
+        <hr />
+        <BlogPostPlaceholder>
+            {postList.filter(post => post.video_url).slice(0, 3).map((video, index) => {
+              return <Link to={`/post/${video.slug}`} onClick={() => handleClick(video)} 
+                      className="link">
+                <Blog key={index} style={{backgroundColor: '#1F2833', width: '100%'}}>
+                    <BlogTitle>{video.title}</BlogTitle>
+                    <BlogSummary>{video.summary}</BlogSummary>
+                </Blog>
+              </Link>
+            })}
+        </BlogPostPlaceholder>
+
+        <Link onClick={() => localStorage.setItem('videosList', JSON.stringify(postList.filter(post => post.video_url)))}
+          to="/videos" target="_parent"><ViewAll>Svi videi</ViewAll></Link>
       </BlogContainer>
     </Container>
   );

@@ -7,8 +7,9 @@ import Login from './pages/Login';
 import Registration from './pages/Registration'
 import Forgot_Password from './pages/Forgot_Password';
 import HomePage from './pages/HomePage';
-import NewsPage from './pages/NewsPage';
+import PostsPage from './pages/PostsPage';
 import Profile from './pages/Profile';
+import PostPage from './pages/PostPage';
 
 const router = createBrowserRouter([
   {
@@ -29,11 +30,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/news",
-    element: <NewsPage />,
+    element: <PostsPage />,
+  },
+  {
+    path: "/videos",
+    element: <PostsPage />,
   },
   {
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    path: "/post/:video_slug",
+    element: <PostPage />,
   }
 ]);
 

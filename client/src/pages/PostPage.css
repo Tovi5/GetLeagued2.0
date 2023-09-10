@@ -1,0 +1,16 @@
+.video-container{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #13151C;
+    row-gap: 20px;
+    padding-bottom: 30px;
+}
+
+.video-title{
+    color: white;
+    margin-left: 50px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
