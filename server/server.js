@@ -105,4 +105,58 @@ app.put('/updateUser/:id', async (req, res) => {
 });
 
 
+// get post author
+app.get('/getPostInfo/:id', async (req, res) => {
+
+    try {
+
+        const { id } = req.params;
+
+        const data = await pool.query('SELECT * FROM post p JOIN "user" u ON p.author_id = u."ID" '+
+                                        'WHERE p."ID" = $1', [id]);
+
+        res.json(data.rows[0]);
+        
+    } catch (error) {
+        console.error(error.message);
+    }
+
+});
+
+
+// get comments by post id
+app.get('/getComments/:id', async (req, res) => {
+    try {
+
+        const { id } = req.params;
+
+        const comments = await pool.query('SELECT c.content, u.username, c.published_at '+
+                                            'FROM Comment c JOIN Post p ON c.post_id = p."ID" JOIN "user" u ON c.user_id = u."ID" '+
+                                            'WHERE c.post_id = $1', [id]);
+
+        res.json(comments.rows);
+        
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+
+// upload comment to db
+app.post('/postComment', async (req, res) => {
+    try {
+
+        const {published_at, content, post_id, parent_id, user_id} = req.body;
+
+        await pool.query('INSERT INTO comment (published_at, content, post_id, parent_id, user_id) '+
+                        'VALUES ($1, $2, $3, $4, $5)', [published_at, content, post_id, parent_id, user_id]);
+
+        res.json('Unijet novi komentar');
+        
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+
 app.listen(5000, () => console.log('Server is listening on port 5000'));
