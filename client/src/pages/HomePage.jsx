@@ -272,7 +272,7 @@ function HomePage() {
           </Pretraga>
           {input && <ResultList>
             {postList.filter(post => {
-              return !post.video_url && input && post.title.toLowerCase().includes(input.toLowerCase());
+              return input && post.title.toLowerCase().includes(input.toLowerCase());
             }).slice(0, 3)
               .map((news, index) => (
                 <SearchResult onClick={() => setInput(news.title)} key={index}>
@@ -306,7 +306,7 @@ function HomePage() {
         <hr />
         <BlogPostPlaceholder>
             {postList.filter(post => post.video_url).slice(0, 3).map((video, index) => {
-              return <Link to={`/post/${video.slug}`} onClick={() => handleClick(video)} target="_parent"
+              return <Link to={`/video/${video.slug}`} onClick={() => handleClick(video)} target="_parent"
                       className="link">
                 <Blog key={index} style={{backgroundColor: '#1F2833', width: '100%'}}>
                     <BlogTitle>{video.title}</BlogTitle>

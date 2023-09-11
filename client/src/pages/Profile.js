@@ -168,8 +168,8 @@ function Profile() {
                 {saveClicked && samePass && <div className='error'>Nova i stara sifra moraju da se razlikuju.</div>}
 
                 <div className='profile-field'>
-                    <label for='old-password' className='profile-label'>Old Password</label>
-                    <input type='password' name='password' onChange={(e) => setOldPass(e.target.value)} required placeholder='Old password' />
+                    <label for='old-password' className='profile-label'>Current Password</label>
+                    <input type='password' name='password' onChange={(e) => setOldPass(e.target.value)} required placeholder='Current password' />
                 </div>
                 {saveClicked && emptyInput && <div className='error'>Molim vas popunite ovo polje.</div>}
                 {saveClicked && incorrectPass && <div className='error'>Pogresna sifra.</div>}

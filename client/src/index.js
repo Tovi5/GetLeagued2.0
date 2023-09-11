@@ -9,7 +9,7 @@ import Forgot_Password from './pages/Forgot_Password';
 import HomePage from './pages/HomePage';
 import PostsPage from './pages/PostsPage';
 import Profile from './pages/Profile';
-import PostPage from './pages/PostPage';
+import VideoPage from './pages/VideoPage';
 
 const router = createBrowserRouter([
   {
@@ -41,8 +41,8 @@ const router = createBrowserRouter([
     element: <Profile />,
   },
   {
-    path: "/post/:video_slug",
-    element: <PostPage />,
+    path: "/video/:video_slug",
+    element: <VideoPage />,
   }
 ]);
 
