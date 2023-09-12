@@ -43,7 +43,7 @@ const PostPage = () => {
             setUrl(localStorage.getItem('url'));
 
 
-        const getAuthor = async () => {
+        const getPostInfo = async () => {
             try {
 
                 const res = await fetch(`http://localhost:5000/getPostInfo/${localStorage.getItem('post_id')}`,{
@@ -78,7 +78,7 @@ const PostPage = () => {
             }
         }
         
-        getAuthor();
+        getPostInfo();
         getComments();
 
         if(localStorage.getItem('username'))
