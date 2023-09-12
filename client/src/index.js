@@ -10,6 +10,7 @@ import HomePage from './pages/HomePage';
 import PostsPage from './pages/PostsPage';
 import Profile from './pages/Profile';
 import VideoPage from './pages/VideoPage';
+import NewsPage from './pages/NewsPage';
 
 const router = createBrowserRouter([
   {
@@ -41,8 +42,12 @@ const router = createBrowserRouter([
     element: <Profile />,
   },
   {
-    path: "/video/:video_slug",
+    path: "/videos/:video_slug",
     element: <VideoPage />,
+  },
+  {
+    path: "/news/:news_slug",
+    element: <NewsPage />,
   }
 ]);
 

@@ -122,7 +122,7 @@ const BlogPostPlaceholder = styled.div`
   width:75%;
   margin: 50px 0;
   padding:15px;
-  column-gap: 2.3%;
+  column-gap: 5%;
   row-gap: 10px;
 `;
 
@@ -130,7 +130,7 @@ const Blog = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #13151C;
-  width: 30%;
+  width: 100%;
   height: 150px;
   border-radius: 10px;
   padding: 10px;
@@ -252,7 +252,7 @@ function HomePage() {
 
   const handleClick = (post) => {
       localStorage.setItem('post_id', post.ID);
-      localStorage.setItem('url', post.video_url);
+      if(post.video_url) localStorage.setItem('url', post.video_url);
       localStorage.setItem('post-title', post.title);
   }
 
@@ -288,10 +288,13 @@ function HomePage() {
         <BlogPostPlaceholder>
 
           {postList.filter(post => !post.video_url).slice(0, 3).map((news, index) => (
-            <Blog key={index}>
-              <BlogTitle>{news.title}</BlogTitle>
-              <BlogSummary>{news.summary}</BlogSummary>
-            </Blog>
+            <Link to={`news/${news.slug}`} onClick={() => handleClick(news)} className="link">
+              <Blog key={index}>
+                <BlogTitle>{news.title}</BlogTitle>
+                <BlogSummary>{news.summary}</BlogSummary>
+              </Blog>
+            </Link>
+            
           ))}
 
         </BlogPostPlaceholder>
@@ -305,15 +308,15 @@ function HomePage() {
         <span onClick={() => console.log(postList.filter(post => post.video_url))}>Najnoviji videi</span>
         <hr />
         <BlogPostPlaceholder>
-            {postList.filter(post => post.video_url).slice(0, 3).map((video, index) => {
-              return <Link to={`/video/${video.slug}`} onClick={() => handleClick(video)} target="_parent"
+            {postList.filter(post => post.video_url).slice(0, 3).map((video, index) => (
+              <Link to={`/videos/${video.slug}`} onClick={() => handleClick(video)} target="_parent"
                       className="link">
-                <Blog key={index} style={{backgroundColor: '#1F2833', width: '100%'}}>
+                <Blog key={index} style={{backgroundColor: '#1F2833'}}>
                     <BlogTitle>{video.title}</BlogTitle>
                     <BlogSummary>{video.summary}</BlogSummary>
                 </Blog>
               </Link>
-            })}
+            ))}
         </BlogPostPlaceholder>
 
         <Link onClick={() => localStorage.setItem('videosList', JSON.stringify(postList.filter(post => post.video_url)))}
