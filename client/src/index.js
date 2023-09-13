@@ -11,6 +11,7 @@ import PostsPage from './pages/PostsPage';
 import Profile from './pages/Profile';
 import VideoPage from './pages/VideoPage';
 import NewsPage from './pages/NewsPage';
+import SearchPage from './pages/SearchPage';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/news/:news_slug",
     element: <NewsPage />,
+  },
+  {
+    path: "/results",
+    element: <SearchPage />,
   }
 ]);
 
