@@ -264,11 +264,13 @@ function HomePage() {
           <Naslov>Spremni da postanete bolji?</Naslov>
           <Pretraga>
             <InputField type="text" placeholder="Pretraga" value={input} onChange={e => setInput(e.target.value)} />
-            <FaSearch style={{
-              marginLeft: '10px', marginRight: '10px', height: '1.5rem',
-              width: '1.5rem', color: '#C5C6C7', cursor: 'pointer'
-            }}
+            <Link to='/results' style={{
+                marginLeft: '10px', marginRight: '10px', height: '1.5rem',
+                width: '1.5rem', color: '#C5C6C7', cursor: 'pointer'
+              }}>
+              <FaSearch style={{height: '100%', width: '100%'}}
               onClick={() => onSearch(input)} />
+            </Link>
           </Pretraga>
           {input && <ResultList>
             {postList.filter(post => {
