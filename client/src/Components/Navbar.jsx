@@ -3,6 +3,8 @@ import { styled } from 'styled-components'
 import { Link } from 'react-router-dom'
 import { AiOutlineDown } from 'react-icons/ai';
 import { AiOutlineUp } from 'react-icons/ai';
+import { PiUploadSimpleDuotone } from 'react-icons/pi';
+import { IconContext } from 'react-icons/lib';
 
 
 const Container = styled.div`
@@ -20,6 +22,20 @@ const Wrapper = styled.div`
     padding:0px 20px;
     position:relative;
 `;
+
+const IconContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 30px 0 0;
+    aspect-ratio: 1/1;
+    height: 40px;
+    border-radius: 50%;
+
+    &:hover{
+        background-color: rgb(50, 51, 52, 0.7);
+    }
+`
 
 const Button = styled.button`    
     background-color:transparent;
@@ -91,7 +107,7 @@ const Option = styled.div`
     }
 `;
 
-function Navbar({ username, setUsername, setRole, setOdjavljen }) {
+function Navbar({ username, setUsername, setRole, role, setOdjavljen }) {
 
     const [profileClicked, setProfileClicked] = useState(false);
 
@@ -107,6 +123,17 @@ function Navbar({ username, setUsername, setRole, setOdjavljen }) {
             <Container>
                 <Wrapper>
                     <Link to="/"><Houm>Home</Houm></Link>
+
+                    {role === 'admin' && <Link to='/upload'>
+                        <IconContainer>
+                            <IconContext.Provider
+                            value={{color: '#c5c6c7', size: '20px'}}>
+                                <PiUploadSimpleDuotone/>
+                            </IconContext.Provider>
+                        </IconContainer>
+                    </Link>}
+                    
+                    
                     {username && <Profile onClick={() => setProfileClicked(!profileClicked)}>{username}
                         {!profileClicked && <AiOutlineDown />}
                         {profileClicked && <AiOutlineUp />}

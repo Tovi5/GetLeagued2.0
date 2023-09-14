@@ -238,17 +238,6 @@ function HomePage() {
     localStorage.setItem('filteredPostList', JSON.stringify(postList.filter(post => post.title.toLowerCase().includes(input.toLowerCase()))));
     console.log(postList.filter(post => post.title.toLowerCase().includes(input.toLowerCase())));
   }
-  
-  const makeSlug = (post) => {
-    let slug = '';
-    let words = post.title.toLowerCase().split(' ');
-    for(let i = 0; i < words.length; i++){
-      slug += '-';
-      slug += words[i];
-    }
-
-    return slug + '?v=' + post.ID.toString();
-  }
 
   const handleClick = (post) => {
       localStorage.setItem('post_id', post.ID);
@@ -259,7 +248,7 @@ function HomePage() {
   return (
     <Container>
       <Content>
-        <Navbar username={username} setUsername={setUsername} setRole={setRole} setOdjavljen={setOdjavljen} />
+        <Navbar username={username} setUsername={setUsername} setRole={setRole} role={role} setOdjavljen={setOdjavljen} />
         <Wrapper>
           <Naslov>Spremni da postanete bolji?</Naslov>
           <Pretraga>

@@ -173,8 +173,8 @@
     color: black;
     font-size: 10px;
     font-weight: 600;
-    padding: 1px 3px;
-    transform: translateY(0.05rem);
+    padding: 2px 3px;
+    transform: translateY(0.1rem);
 }
 
 .user-comment span span{

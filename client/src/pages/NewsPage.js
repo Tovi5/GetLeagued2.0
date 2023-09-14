@@ -91,7 +91,7 @@ const NewsPage = () => {
         <div className='news-container'>
             <div className='navbar-container'>
                 <div style={{backgroundColor: 'rgb(11, 12, 16, 0.8)', height: '500px'}}>
-                    <Navbar username={username} setUsername={setUsername} setRole={setRole} setOdjavljen={setOdjavljen} />
+                    <Navbar username={username} setUsername={setUsername} setRole={setRole} role={role} setOdjavljen={setOdjavljen} />
                 </div>
             </div>
 

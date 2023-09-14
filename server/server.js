@@ -159,4 +159,22 @@ app.post('/postComment', async (req, res) => {
 });
 
 
+// insert post
+app.post('/insertPost', async (req, res) => {
+    try {
+        
+        const {video_url, title, meta_title, slug, summary, updated_date, published_date, content, author_id, image_url} = req.body;
+
+        await pool.query('INSERT INTO post (video_url, title, meta_title, slug, summary, updated_date, published_date, content, author_id, image_url) '+
+                        'VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)',
+                        [video_url, title, meta_title, slug, summary, updated_date, published_date, content, author_id, image_url]);
+        
+        res.json('Post dodat');
+
+    } catch (error) {
+        console.error(error.message);
+    }
+})
+
+
 app.listen(5000, () => console.log('Server is listening on port 5000'));
