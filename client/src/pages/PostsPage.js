@@ -80,7 +80,7 @@ function NewsPage() {
 
             <div className='background'>
 
-                <Navbar username={username} setUsername={setUsername} setRole={setRole} setOdjavljen={setOdjavljen} />
+                <Navbar username={username} setUsername={setUsername} setRole={setRole} role={role} setOdjavljen={setOdjavljen} />
 
                 <div className='news-title-container'>
 

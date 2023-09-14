@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import VideoPage from './pages/VideoPage';
 import NewsPage from './pages/NewsPage';
 import SearchPage from './pages/SearchPage';
+import UploadPage from './pages/UploadPage';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
   {
     path: "/results",
     element: <SearchPage />,
+  },
+  {
+    path: "/upload",
+    element: <UploadPage />,
   }
 ]);
 

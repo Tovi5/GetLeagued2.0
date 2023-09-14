@@ -54,8 +54,10 @@ const PostPage = () => {
                 setAuthorUsername(data.username);
                 setPublishedDate(data.published_date.slice(0, 10))
                 setTime(data.published_date.slice(11, 16));
-                setSummary(data.summary);
-                setContent(data.content);
+                if(data.summary)
+                    setSummary(data.summary);
+                if(data.content)
+                    setContent(data.content);
         
             } catch (error) {
                 console.error(error.message);
@@ -118,13 +120,6 @@ const PostPage = () => {
       }, [username]);
 
 
-      /*useEffect(() => {
-
-        setCommentPosted(false);
-
-      }, [commentPosted]);*/
-
-
       const postComment = async (e) => {
         e.preventDefault();
 
@@ -147,7 +142,7 @@ const PostPage = () => {
     return (
         <div className='video-container'>
             <div style={{height: '120px'}}>
-                <Navbar username={username} setUsername={setUsername} setRole={setRole} setOdjavljen={setOdjavljen} />
+                <Navbar username={username} setUsername={setUsername} setRole={setRole} role={role} setOdjavljen={setOdjavljen} />
             </div>
             
             <iframe style={{ border: 'none' }}

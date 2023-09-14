@@ -141,7 +141,7 @@ function Profile() {
             </div>}
             <div className='cover-img'>
                 <div className='darken'>
-                    <Navbar username={username} setUsername={setUsername} setRole={setRole} setOdjavljen={setOdjavljen} />
+                    <Navbar username={username} setUsername={setUsername} setRole={setRole} role={role} setOdjavljen={setOdjavljen} />
                 </div>
             </div>
             <div className='profile-content'>

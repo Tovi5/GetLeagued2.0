@@ -79,7 +79,7 @@ const SearchPage = () => {
         <div className='results-container'>
             <div className='search-header'>
                 <div style={{backgroundColor: 'rgb(11, 12, 16, 0.75)', height: '100%'}}>
-                    <Navbar username={username} setUsername={setUsername} setRole={setRole} setOdjavljen={setOdjavljen} />
+                    <Navbar username={username} setUsername={setUsername} setRole={setRole} role={role} setOdjavljen={setOdjavljen} />
                 </div>
             </div>
 
