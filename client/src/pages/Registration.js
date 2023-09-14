@@ -113,7 +113,7 @@ function Registration() {
                     })
                 });
 
-                navigate('/');
+                navigate('/login');
             }
         }
     }

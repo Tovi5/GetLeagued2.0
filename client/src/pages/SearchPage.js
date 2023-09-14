@@ -101,7 +101,7 @@ const SearchPage = () => {
                         {postList.filter(post => !post.video_url).length == 0 && 
                         <div className='no-items-found'>Nazalost, nismo nasli trazeni artikal.<FaRegSadTear /></div>}
                     </div>
-                    {postList.filter(post => !post.video_url).length > 0 && loadNews != postList.filter(post => !post.video_url).length &&
+                    {postList.filter(post => !post.video_url).length > 0 && loadNews < postList.filter(post => !post.video_url).length &&
                     <button className='view-more-posts' onClick={() => loadMoreNews(postList.filter(post => !post.video_url))}>Pogledaj jos</button>}
                 </div>
                 

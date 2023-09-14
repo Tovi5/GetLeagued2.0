@@ -128,7 +128,7 @@ function Forgot_Password() {
                     </label>
                 </div>
 
-                {!exstEmail && !emptyInput && resetPressed && <div className='error'>Email ne postoji!</div>}
+                {!exstEmail && !emptyInput && resetPressed && <div className='error-div'>Email ne postoji!</div>}
 
                 <div className='field-pass'>
                     <input type="password" name="new-password" autocomplete="off"
@@ -139,11 +139,7 @@ function Forgot_Password() {
                     </label>
                 </div>
 
-                <div className='pass-container'>
-                    
-                </div>
-
-                {exstPassword && !emptyInput && resetPressed && <div className='error'>Ne mozete koristiti prethodni password kao novi!</div>}
+                {exstPassword && !emptyInput && resetPressed && <div className='error-div'>Ne mozete koristiti prethodni password kao novi!</div>}
 
                 <div className='field-pass'>
                     <input type="password" name="conf-new-password" autocomplete="off"
@@ -154,7 +150,7 @@ function Forgot_Password() {
                     </label>
                 </div>
 
-                {!correctPass && !emptyInput && resetPressed && <div className='error'>Pogresna sifra</div>}
+                {!correctPass && !emptyInput && resetPressed && <div className='error-div'>Pogresna sifra</div>}
 
                 <button className='reset-btn' onClick={(e) => resetPassword(e)}>RESET PASSWORD</button>
 

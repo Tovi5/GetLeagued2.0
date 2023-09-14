@@ -101,14 +101,14 @@ function NewsPage() {
                     {postList.slice(0, loadNews).map((post, index) => (
                         <>
                         {postType === 'news' && <Link to={`/news/${post.slug}`} onClick={() => handleClick(post)}
-                                                    className='link'>
+                                                    className='link' target='_parent'>
                             <div className='post' key={index} style={{width: '100%'}}>
                                 <div style={{ backgroundColor: "inherit", fontSize: "24px" }}>{post.title}</div>
                                 <div style={{ fontSize: "16px", overflow: "auto" }}>{post.summary}</div>
                             </div>
                         </Link>}
                         {postType === 'video' && <Link to={`/videos/${post.slug}`} onClick={() => handleClick(post)}
-                                                    className='link'>
+                                                    className='link' target='_parent'>
                             <div className='post' key={index} style={{width: '100%'}}>
                                 <div style={{ backgroundColor: "inherit", fontSize: "24px" }}>{post.title}</div>
                                 <div style={{ fontSize: "16px", overflow: "auto" }}>{post.summary}</div>
