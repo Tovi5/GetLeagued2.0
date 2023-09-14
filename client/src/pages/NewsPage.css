@@ -1,0 +1,72 @@
+.news-container{
+    width: 100%;
+    background-color: #13151C;
+    color: white;
+    padding-bottom: 50px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar-container{
+    background-image: url('../img/yas.jpg');
+    background-size: cover;
+}
+
+.news-content{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    row-gap: 20px;
+    padding-top: 50px;
+    align-self: center;
+    align-items: center;
+}
+
+.title-summary{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    width: 100%;
+}
+
+.news-content h1{
+    margin-bottom: 0;
+}
+
+.date-author{
+    display: flex;
+    height: 50px;
+    border: 1px solid #c5c6c7;
+    margin-top: 30px;
+    width: 100%;
+    font-size: 10px;
+}
+
+.date-published{
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    border-right: 1px solid #c5c6c7;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.news-author{
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    padding-left: 150px;
+    flex-grow: 8;
+    height: 100%;
+}
+
+.author-username{
+    color: #c5c6c7;
+}
+
+.single-news-content{
+    width: 75%;
+    padding: 60px 0;
+}
