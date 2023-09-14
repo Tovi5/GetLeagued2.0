@@ -66,6 +66,9 @@ const UploadPage = () => {
       let words = title.toLowerCase().split(/[^A-Za-z]/);
       let slug = words[0];
       for(let i = 1; i < words.length; i++){
+        if(words[i] === '')
+            continue;
+
         slug += '-';
         slug += words[i];
       }
