@@ -19,6 +19,11 @@ const UploadPage = () => {
     const [summary, setSummary] = useState('');
     const [content, setContent] = useState('');
 
+    const [postClicked, setPostClicked] = useState(false);
+    const [emptyTitle, setEmptyTitle] = useState(false);
+    const [emptySummary, setEmptySummary] = useState(false);
+    const [emptyContent, setEmptyContent] = useState(false);
+
 
     useEffect(() => {
 
@@ -76,10 +81,29 @@ const UploadPage = () => {
       return slug;
     }
 
+    const reset = () => {
+        setEmptyTitle(false);
+        setEmptySummary(false);
+        setEmptyContent(false);
+    }
+
     const handlePost = async (e) => {
         e.preventDefault();
 
-        await fetch('http://localhost:5000/insertPost', {
+        setPostClicked(true);
+
+        if(!title){
+            setEmptyTitle(true);
+        }
+        if(!summary){
+            setEmptySummary(true);
+        }
+        if(!content && uploadNews){
+            setEmptyContent(true);
+        }
+
+        else if(title && summary){
+            await fetch('http://localhost:5000/insertPost', {
             method: 'POST',
             headers: { 'Content-type': 'application/json' },
             body: JSON.stringify({
@@ -87,16 +111,18 @@ const UploadPage = () => {
                 'title': title,
                 'meta-title': null,
                 'slug': makeSlug(title),
-                'summary': summary ? summary : null,
+                'summary': summary,
                 'updated_date': new Date(),
                 'published_date': new Date(),
                 'content': content ? content : null,
                 'author_id': id,
                 'image_url': null
-            })
-        });
+                })
+            });
 
-        navigate('/');
+            navigate('/');
+        }
+        
     }
 
     return (
@@ -115,14 +141,22 @@ const UploadPage = () => {
                     {uploadVideo && <input type='text' className='input-data' placeholder='Unesite yt url...'
                     onChange={(e) => setVideoUrl(e.target.value)} />}
 
+                    {uploadVideo && !videoUrl && postClicked && <div className='error-post'>Morate unijeti url yt videa</div>}
+
                     <input type='text' className='input-data' placeholder='Unesite naslov...'
                     onChange={(e) => setTitle(e.target.value)} />
+
+                    {!title && postClicked && <div className='error-post'>Morate unijeti naslov</div>}
 
                     <input type='text' className='input-data' placeholder='Unesite sazetak...'
                     onChange={(e) => setSummary(e.target.value)} />
 
+                    {!summary && postClicked && <div className='error-post'>Morate unijeti sazetak</div>}
+
                     <textarea className='input-data' rows={10} placeholder='Unesite sadrzaj...'
                     onChange={(e) => setContent(e.target.value)} />
+
+                    {uploadNews && !content && postClicked && <div className='error-post'>Morate unijeti sadrzaj</div>}
 
                     <button className='upload-btn' onClick={(e) => handlePost(e)}>Objavi</button>
                 </div>

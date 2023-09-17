@@ -136,6 +136,11 @@ const Blog = styled.div`
   padding: 10px;
   margin: 0;
   color: #C5C6C7;
+  transition: box-shadow 0.2s ease;
+
+  &:hover{
+    box-shadow: 0 0 20px #45A29E;
+  }
 `;
 
 const BlogTitle = styled.div`
