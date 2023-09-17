@@ -47,7 +47,7 @@
     width: 80%;
     padding: 15px;
     column-gap: 5%;
-    row-gap: 10px;
+    row-gap: 30px;
 }
 
 .link{
@@ -66,7 +66,11 @@
     padding: 10px;
     color: #C5C6C7;
     font-weight: 400;
-    box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1.5px;
+    transition: box-shadow 0.2s ease;
+}
+
+.post:hover{
+    box-shadow: 0 0 20px #45A29E;
 }
 
 .view-more{

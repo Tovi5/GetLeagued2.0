@@ -162,13 +162,13 @@ function Profile() {
                 </div>
 
                 <div className='profile-field'>
-                    <label for='new-password' className='profile-label'>New password</label>
+                    <label for='new-password' className='profile-label'>Nova sifra</label>
                     <input type='password' name='new-password' onChange={(e) => setNewPass(e.target.value)} required placeholder='New password' />
                 </div>
                 {saveClicked && samePass && <div className='error'>Nova i stara sifra moraju da se razlikuju.</div>}
 
                 <div className='profile-field'>
-                    <label for='old-password' className='profile-label'>Current Password</label>
+                    <label for='old-password' className='profile-label'>Trenutna sifra</label>
                     <input type='password' name='password' onChange={(e) => setOldPass(e.target.value)} required placeholder='Current password' />
                 </div>
                 {saveClicked && emptyInput && <div className='error'>Molim vas popunite ovo polje.</div>}
