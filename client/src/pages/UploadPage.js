@@ -82,6 +82,7 @@ const UploadPage = () => {
     }
 
     const reset = () => {
+        setPostClicked(false);
         setEmptyTitle(false);
         setEmptySummary(false);
         setEmptyContent(false);
@@ -89,6 +90,8 @@ const UploadPage = () => {
 
     const handlePost = async (e) => {
         e.preventDefault();
+
+        reset();
 
         setPostClicked(true);
 
@@ -132,9 +135,15 @@ const UploadPage = () => {
                     <div className='choice-container'>
                         Unesi:
                         <button className='upload-choice' id='news-choice'
-                        onClick={() => {setUploadNews(true); setUploadVideo(false)}}>Vijest</button>
+                        onClick={() => {
+                            if(!uploadNews){
+                                setUploadNews(true); setUploadVideo(false); reset()
+                            }}}>Vijest</button>
                         <button className='upload-choice' id='video-choice'
-                        onClick={() => {setUploadNews(false); setUploadVideo(true)}}>Video</button>
+                        onClick={() => {
+                            if(!uploadVideo){
+                                setUploadNews(false); setUploadVideo(true); reset()
+                            }}}>Video</button>
                     </div>
                     <span id='span-underline' />
                     

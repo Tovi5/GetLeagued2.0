@@ -51,7 +51,7 @@ function Login() {
         localStorage.setItem('username', username);
         localStorage.setItem('role', role);
         localStorage.setItem('odjavljen', JSON.stringify(false));
-        navigate('/'); // potrebno update-ovanje last_login
+        navigate(-1);
       }
       else setError(false);
 

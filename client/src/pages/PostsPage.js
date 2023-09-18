@@ -119,7 +119,8 @@ function NewsPage() {
 
                 </div>
 
-                <button className='view-more' onClick={() => loadMore()}>Pogledaj jos</button>
+                {postList.length > 0 && loadNews < postList.length && 
+                <button className='view-more' onClick={() => loadMore()}>Pogledaj jos</button>}
 
             </div>
 
