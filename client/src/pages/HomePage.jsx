@@ -231,17 +231,15 @@ function HomePage() {
         localStorage.setItem('odjavljen', JSON.stringify(odjavljen));
     else{
         localStorage.removeItem('odjavljen');
-        navigate('/');
+        navigate(0);
     }
 
   }, [username]);
 
 
   const onSearch = (input) => {
-    console.log(input);
-
-    localStorage.setItem('filteredPostList', JSON.stringify(postList.filter(post => post.title.toLowerCase().includes(input.toLowerCase()))));
-    console.log(postList.filter(post => post.title.toLowerCase().includes(input.toLowerCase())));
+    if(input.length != 0)
+      localStorage.setItem('filteredPostList', JSON.stringify(postList.filter(post => post.title.toLowerCase().includes(input.toLowerCase()))));
   }
 
   const handleClick = (post) => {
