@@ -146,17 +146,19 @@ const UploadPage = () => {
                     <input type='text' className='input-data' placeholder='Unesite naslov...'
                     onChange={(e) => setTitle(e.target.value)} />
 
-                    {!title && postClicked && <div className='error-post'>Morate unijeti naslov</div>}
+                    {!title && postClicked && <div className='error-post'>Morate unijeti naslov.</div>}
+                    {title.length > 75 && <div className='error-post'>Naslov ne moze biti duzi od 75 karatkera.</div>}
 
                     <input type='text' className='input-data' placeholder='Unesite sazetak...'
                     onChange={(e) => setSummary(e.target.value)} />
 
-                    {!summary && postClicked && <div className='error-post'>Morate unijeti sazetak</div>}
+                    {!summary && postClicked && <div className='error-post'>Morate unijeti sazetak.</div>}
+                    {summary.length > 255 && <div className='error-post'>Sazetak ne moze biti duzi od 255 karatkera.</div>}
 
                     <textarea className='input-data' rows={10} placeholder='Unesite sadrzaj...'
                     onChange={(e) => setContent(e.target.value)} />
 
-                    {uploadNews && !content && postClicked && <div className='error-post'>Morate unijeti sadrzaj</div>}
+                    {uploadNews && !content && postClicked && <div className='error-post'>Morate unijeti sadrzaj.</div>}
 
                     <button className='upload-btn' onClick={(e) => handlePost(e)}>Objavi</button>
                 </div>
