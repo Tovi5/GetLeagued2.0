@@ -3,20 +3,26 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import kayne from "../img/snow_moon_kayn.jpg";
+import vayne from '../img/vayne.jpg';
 import { FaSearch } from 'react-icons/fa';
 
 const Container = styled.div`
   background-image: url(${kayne});
   height: 100vh;
-  width: 99.05vw;
+  width: 100%;
   background-size: cover;
   margin: 0;
+
+  @media(max-width: 768px){
+    background-image: url(${vayne});
+    background-size: fit;
+  }
 `; //ovdje ce biti navbar i content home pagea
 
 const Content = styled.div`
   background-color: rgb(11, 12, 16, 0.8);
   height: 100vh;
-  width: 99.05vw;
+  width: 100%;
   margin: 0;
   padding: 0;
 `;
@@ -97,7 +103,7 @@ const BlogContainer = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: #1F2833;
-  width: 99.05vw;
+  width: 100%;
   margin: 0;
   padding: 100px 0 75px 0;
 
