@@ -11,6 +11,11 @@
 .navbar-container{
     background-image: url('../img/yas.jpg');
     background-size: cover;
+
+    @media only screen and (max-width: 768px) {
+        background-image: url('../img/zed.jpg');
+        background-size: fit;
+    }
 }
 
 .news-content{

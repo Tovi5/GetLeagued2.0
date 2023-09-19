@@ -10,7 +10,7 @@ import { IconContext } from 'react-icons/lib';
 const Container = styled.div`
     top:0;
     height:100px;
-    width: 99vw;
+    width: 100%;
     padding: 10px 0 50px 0;
     background-color:transparent;   
 `;//navbar ce imati button za prijavu i imace home page slicicu za vracanje na home page
