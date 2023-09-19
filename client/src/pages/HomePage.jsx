@@ -287,7 +287,7 @@ function HomePage() {
         <hr />
         <BlogPostPlaceholder>
 
-          {postList.filter(post => !post.video_url).slice(0, 3).map((news, index) => (
+          {/*postList.filter(post => !post.video_url).slice(0, 3).map((news, index) => (
             <Link to={`news/${news.slug}`} onClick={() => handleClick(news)} className="link">
               <Blog key={index}>
                 <BlogTitle>{news.title}</BlogTitle>
@@ -295,7 +295,14 @@ function HomePage() {
               </Blog>
             </Link>
             
-          ))}
+          ))*/}
+
+          <div className="link" style={{width: '100%'}}>
+            <Blog>
+              <BlogTitle>Jungle promjene</BlogTitle>
+              <BlogSummary>stizu promjene za igrace dzungle</BlogSummary>
+            </Blog>
+          </div>
 
         </BlogPostPlaceholder>
 
@@ -308,7 +315,7 @@ function HomePage() {
         <span onClick={() => console.log(postList.filter(post => post.video_url))}>Najnoviji videi</span>
         <hr />
         <BlogPostPlaceholder>
-            {postList.filter(post => post.video_url).slice(0, 3).map((video, index) => (
+            {/*postList.filter(post => post.video_url).slice(0, 3).map((video, index) => (
               <Link to={`/videos/${video.slug}`} onClick={() => handleClick(video)} target="_parent"
                       className="link">
                 <Blog key={index} style={{backgroundColor: '#1F2833'}}>
@@ -316,7 +323,14 @@ function HomePage() {
                     <BlogSummary>{video.summary}</BlogSummary>
                 </Blog>
               </Link>
-            ))}
+            ))*/}
+
+            <div className="link" style={{width: '100%'}}>
+              <Blog style={{backgroundColor: '#1F2833'}}>
+                <BlogTitle>Mid guide</BlogTitle>
+                <BlogSummary>mid guide for begginers</BlogSummary>
+              </Blog>
+            </div>
         </BlogPostPlaceholder>
 
         <Link onClick={() => localStorage.setItem('videosList', JSON.stringify(postList.filter(post => post.video_url)))}
