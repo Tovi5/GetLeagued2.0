@@ -90,8 +90,8 @@ const PostPage = () => {
 
             const data = await res.json();
             setAuthorUsername(data.username);
-            setPublishedDate(data.published_date.slice(0, 10))
-            setTime(data.published_date.slice(11, 16));
+            setPublishedDate(data.published_date.slice(0, 10));
+            setTime((parseInt(data.published_date.slice(11, 13))+2).toString() + data.published_date.slice(13, 16));
             if (data.summary)
                 setSummary(data.summary);
             if (data.content)
@@ -200,7 +200,7 @@ const PostPage = () => {
                                 <span>
                                     {'@' + comm.username}
                                     {authorUsername === comm.username && <span className='creator'>creator</span>}
-                                    <span>Objavljen {comm.published_at.slice(0, 10)} u {comm.published_at.slice(11, 16)}</span>
+                                    <span>Objavljen {comm.published_at.slice(0, 10)} u {(parseInt(comm.published_at.slice(11, 13))+2).toString() + comm.published_at.slice(13, 16) }</span>
                                 </span>
                                 <div className='comm-content'>{comm.content}</div>
                             </div>
